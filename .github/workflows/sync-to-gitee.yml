@@ -32,7 +32,7 @@ jobs:
       - name: Push to Gitee
         run: |
           # 添加 Gitee 远程仓库
-          git remote add gitee git@gitee.com:${{ secrets.GITEE_USERNAME }}/${{ github.event.repository.name }}.git
+          git remote add gitee git@gitee.com:${{ secrets.GITEE_USERNAME }}/resources.git
           
           # 推送到 Gitee 的所有分支
           git push gitee --all --force
