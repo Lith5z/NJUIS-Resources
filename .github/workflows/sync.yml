@@ -11,9 +11,10 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Sync via rclone
+      - name: rclone
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: sync ./ my-alist:/NJUIS-Resources --progress --exclude ".git/**" --exclude ".github/**"
+          args: copy . my-alist:/NJUIS-Resources --progress --exclude ".git/**" --exclude ".github/**"
+
