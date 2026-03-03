@@ -31,7 +31,7 @@ jobs:
       - name: Push to Gitee (Skip LFS)
         run: |
           REPO_NAME="${{ github.event.repository.name }}"
-          GITEE_URL="git@gitee.com:${{ secrets.GITEE_USERNAME }}/${REPO_NAME}.git"
+          GITEE_URL="git@gitee.com:${{ secrets.GITEE_USERNAME }}/resources.git"
           echo "Push to: ${GITEE_URL}"
           git remote remove gitee 2>/dev/null || true
           git remote add gitee "${GITEE_URL}"
@@ -42,4 +42,4 @@ jobs:
         run: |
           echo "=== Sync Completed ==="
           echo "GitHub: https://github.com/${{ github.repository }}"
-          echo "Gitee: https://gitee.com/${{ secrets.GITEE_USERNAME }}/${{ github.event.repository.name }}"
+          echo "Gitee: https://gitee.com/${{ secrets.GITEE_USERNAME }}/resources"
