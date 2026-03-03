@@ -1,0 +1,20 @@
+    name: Sync Materials to Tianyi
+     on:
+       push:
+         branches:
+           - main
+         paths:
+           - './**'  # 假设你把资料都放在这
+     jobs:
+       sync:
+         runs-on: ubuntu-latest
+         steps:
+           - name: Checkout Code
+             uses: actions/checkout@v3
+           - name: Setup rclone
+             uses: wei/rclone@v1
+             env:
+               RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+             with:
+               # 把仓库的 downloads 文件夹，同步到 AList 挂载的 /materials 目录
+               args: sync ./ my-alist:/NJUIS-Resources --progress
