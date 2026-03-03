@@ -16,5 +16,5 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy . my-alist:/NJUIS-Resources --progress --exclude ".git/**" --exclude ".github/**"
+          args: copy . my-alist:/NJUIS-Resources
 
