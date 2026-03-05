@@ -10,11 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: rclone
-        uses: wei/rclone@v1
+        uses: actions/checkout@v4 # 建议升级到 v4，v3 基于的 Node16 已被 GitHub 弃用
+
+      - name: Install rclone
+        run: curl https://rclone.org/install.sh | sudo bash
+
+      - name: Setup rclone config
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy . my-alist:/NJUIS-Resources --progress --stats 1m --transfers 2 --checkers 2 --exclude=".git/**"
+        run: |
+          # 原生的 rclone 需要读取配置文件，所以我们将 Secret 中的配置内容写入到默认路径下
+          mkdir -p ~/.config/rclone
+          echo "$RCLONE_CONF" > ~/.config/rclone/rclone.conf
 
+      - name: Run rclone copy
+        run: |
+          # 直接写 Shell 命令，可以使用反斜杠（\）换行，可读性更好，且不会有 YAML 解析导致的引号丢失问题
+          rclone copy . my-alist:/NJUIS-Resources \
+            --progress \
+            --stats 1m \
+            --transfers 2 \
+            --checkers 2 \
+            --exclude ".git/**"
