@@ -16,5 +16,5 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy . my-alist:/NJUIS-Resources --progress --stats 1m
+          args: copy . my-alist:/NJUIS-Resources --progress --stats 1m --transfers 2 --checkers 2
 
