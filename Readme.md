@@ -2,6 +2,8 @@
 
 本仓库包含南京大学智能科学与技术学院历年课程的课件、试卷与笔记，请访问[项目网站](https://njuis-students.github.io/)获取更多信息。
 
+**如果Github下载速度慢或者访问受限，可访问[镜像站](https://resources.sporeking.top/NJUIS-Resources)。**
+
 ## 目录结构
 
 * 课件和作业：课程名称/开课时间/授课老师/(课件、作业)/两位数字-章节名称
